@@ -3,7 +3,7 @@
 import pandas as pd
 from math import sqrt, exp
 from sklearn import cross_validation
-from sklearn.linear_model import LinearRegression, Ridge
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
 from sklearn.metrics import mean_squared_error
 
 climate = pd.read_csv('C:\\Users\\Bai\\Desktop\\data\\天气.csv')
@@ -65,9 +65,7 @@ X_train, X_test, Y_train, Y_test = cross_validation.train_test_split(data_X, dat
 #     score = mean_squared_error(Y_pred,Y_test)
 #     print(alpha, score)
 
-model = Ridge(alpha=0.1, fit_intercept=True, normalize=True, copy_X=True, max_iter=None, tol=0.001, solver='auto', random_state=None).fit(X_train,Y_train)
+model = Lasso(alpha=0.1, fit_intercept=True, normalize=False, precompute=False, copy_X=True, max_iter=1000, tol=0.0001, warm_start=False, positive=False, random_state=None, selection='cyclic').fit(X_train,Y_train)
 Y_pred = model.predict(X_test)
 score = mean_squared_error(Y_pred,Y_test)
 print(score)
-
-
