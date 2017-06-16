@@ -1,0 +1,3 @@
+NN中LOSS出现nan的情况：
+1, softmax交叉熵中存在log(0)
+2, SGD中没有batch normalize, 学习率过大，出现Inf
