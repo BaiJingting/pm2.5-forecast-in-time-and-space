@@ -6,7 +6,7 @@ data_X, data_Y = ld.LoadData()
 X_train, X_test, Y_train, Y_test = cross_validation.train_test_split(data_X, data_Y, test_size=0.2, random_state=0)
 
 size = 100
-# sizes = [100,100]
+sizes = [100,100]
 iter = 200
 batch_size = 50
 epoch = int(X_train.shape[0]/batch_size)
@@ -24,10 +24,12 @@ with sess.as_default():
     x = tf.placeholder("float", shape=[None, X_train.shape[1]])
     y_ = tf.placeholder("float")
 
-    l1 = Layer(x, X_train.shape[1], size)
-    y = Layer(l1, size, 1)
-    # l2 = Layer(l1, sizes[0], sizes[1])
-    # y = Layer(l2, sizes[1], 1)
+    # l1 = Layer(x, X_train.shape[1], size)
+    # l1 = tf.nn.dropout(l1,0.7)
+    # y = Layer(l1, size, 1)
+    l1 = Layer(x, X_train.shape[1], sizes[0], active_function=tf.nn.relu)
+    l2 = Layer(l1, sizes[0], sizes[1])
+    y = Layer(l2, sizes[1], 1)
 
     loss = tf.reduce_sum(tf.square(y_-y))
     train_step = tf.train.AdamOptimizer(0.005).minimize(loss)
