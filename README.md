@@ -6,8 +6,8 @@
 3. 沈阳市天气情况，包括是否采暖、是否降雨、平均气温（°C）、平均相对湿度（%）、湿度分类、风速（公里/小时）、风速（m/s）、风向、风向分类。
 
 特征处理：
-1. 部分特征二值化编码(OneHotEncoder()(输入必须是2-D array，无法直接对字符串型的类别变量编码), LabelEncoder()和LabelBinarizer()(输入被限定为 1-D array))
-    对于字符串型类别变量，方法一：先用LabelEncoder() 转换成连续的数值型变量，再用OneHotEncoder()二值化；方法二：直接用LabelBinarizer()进行二值化。
+1. 部分特征二值化编码(OneHotEncoder()(输入必须是2-D array，无法直接对字符串型的类别变量编码), LabelEncoder()和LabelBinarizer()(输入被限定为 1-D array))  
+&emsp;对于字符串型类别变量，方法一：先用LabelEncoder() 转换成连续的数值型变量，再用OneHotEncoder()二值化；方法二：直接用LabelBinarizer()进行二值化。
 2. 异常值和缺失值处理，因数据中这两种情况较少，所以直接删除样本。
 3. 归一化（回归）
 4. 离散化（回归）
